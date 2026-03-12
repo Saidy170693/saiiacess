@@ -62,11 +62,11 @@ nav{
 .hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--g2);}
 .hero-h1{font-family:'Cormorant',serif;font-size:clamp(3.4rem,8vw,6.8rem);font-weight:300;line-height:0.95;color:#fff;letter-spacing:-0.01em;margin-bottom:36px;}
 .hero-h1 span{display:block;font-style:italic;color:var(--g3);}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
-.btn-light{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;background:rgba(255,255,255,0.92);color:var(--ink);border:none;font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.22s;}
-.btn-light:hover{background:#fff;color:var(--g1);}
-.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;background:var(--g1);color:#fff;border:none;font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:background 0.22s;}
-.btn-gold:hover{background:var(--g2);color:var(--ink);}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start;}
+.btn-light{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.6);font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all 0.22s;backdrop-filter:blur(4px);}
+.btn-light:hover{background:rgba(255,255,255,0.15);color:#fff;}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:transparent;color:#fff;border:1px solid rgba(196,150,42,0.7);font-family:'Outfit',sans-serif;font-size:0.72rem;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.22s;backdrop-filter:blur(4px);}
+.btn-gold:hover{background:rgba(196,150,42,0.15);color:#fff;}
 
 .hero-dots{position:absolute;bottom:36px;left:56px;display:flex;gap:8px;z-index:3;}
 .hdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;transition:all 0.3s;padding:0;}
@@ -147,7 +147,7 @@ footer{background:#1E1A14;padding:64px 56px 32px;border-top:1px solid #2a2520;}
 .foot-nl-input::placeholder{color:#8a7a62;}
 .foot-nl-btn{padding:11px 16px;background:var(--g1);color:#fff;border:none;cursor:pointer;font-size:0.8rem;transition:background 0.2s;}
 .foot-nl-btn:hover{background:var(--g2);color:var(--ink);}
-.foot-contact{font-size:0.86rem;color:#C8BAA8;line-height:2.1;} .foot-contact p{color:#C8BAA8;}
+.foot-contact{font-size:0.88rem;color:#C8BAA8;line-height:2.2;} .foot-contact p{color:#C8BAA8;} .foot-contact a{color:#C8BAA8 !important;text-decoration:none;font-size:0.88rem;}
 .foot-contact a{color:#C8BAA8;text-decoration:none;transition:color 0.2s;}
 .foot-contact a:hover{color:#fff;}
 .foot-socials{display:flex;gap:12px;margin-top:18px;}
@@ -236,8 +236,8 @@ textarea.f-input{min-height:86px;resize:vertical;}
   .hero-body{padding:0 24px;max-width:100%;}
   .hero-h1{font-size:clamp(2.6rem,11vw,4rem);}
   .hero-tag{font-size:0.62rem;}
-  .hero-btns{flex-direction:column;align-items:flex-start;gap:10px;}
-  .btn-light,.btn-gold{width:100%;justify-content:center;padding:15px 24px;font-size:0.75rem;}
+  .hero-btns{flex-direction:row;align-items:center;gap:10px;flex-wrap:wrap;}
+  .btn-light,.btn-gold{width:auto;justify-content:center;padding:10px 20px;font-size:0.7rem;}
   .shop,.story,.access{padding:52px 20px;}
   .shop-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
   .sec-title{font-size:1.8rem;}
@@ -266,8 +266,8 @@ textarea.f-input{min-height:86px;resize:vertical;}
   .modal-bg{padding:0;align-items:flex-end;}
   .foot-socials{gap:20px;}
   .soc-icon{width:44px;height:44px;font-size:1.1rem;}
-  .foot-contact p{font-size:0.9rem;line-height:2.4;}
-  .foot-contact a{font-size:0.9rem;}
+  .foot-contact p{font-size:1rem;line-height:2.4;color:#E0D4BC !important;}
+  .foot-contact a{font-size:1rem;color:#E0D4BC !important;display:block;padding:4px 0;}
 }
 </style>
 </head>
@@ -304,8 +304,8 @@ textarea.f-input{min-height:86px;resize:vertical;}
     <p class="hero-tag">Premium Eyewear & Exclusive Access</p>
     <h1 class="hero-h1">Access to<span>More.</span></h1>
     <div class="hero-btns">
-      <a href="#shop" class="btn-light">Shop Sunglasses</a>
-      <button class="btn-gold" onclick="openWhatsApp('general')">Request Access</button>
+      <a href="#shop" class="btn-light" id="btnShop" onclick="flashBtn('btnShop','white')">Shop Sunglasses</a>
+      <button class="btn-gold" id="btnAccess" onclick="flashBtn('btnAccess','gold');openWhatsApp('general')">Request Access</button>
     </div>
   </div>
   <div class="hero-dots">
@@ -561,6 +561,21 @@ textarea.f-input{min-height:86px;resize:vertical;}
 <div id="toast"></div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// BUTTON FLASH
+function flashBtn(id, type) {
+  var btn = document.getElementById(id);
+  if (!btn) return;
+  if (type === 'white') {
+    btn.style.background = 'rgba(255,255,255,0.9)';
+    btn.style.color = '#1E1A14';
+    setTimeout(function() { btn.style.background = 'transparent'; btn.style.color = '#fff'; }, 600);
+  } else if (type === 'gold') {
+    btn.style.background = 'rgba(196,150,42,0.9)';
+    btn.style.color = '#fff';
+    setTimeout(function() { btn.style.background = 'transparent'; btn.style.color = '#fff'; }, 600);
+  }
+}
+
 // HERO SLIDER
 let slide = 0;
 const slides = document.querySelectorAll('.hero-slide');
@@ -698,6 +713,21 @@ document.addEventListener('keydown', function(e) {
   }
 });
 </script><script>
+// BUTTON FLASH
+function flashBtn(id, type) {
+  var btn = document.getElementById(id);
+  if (!btn) return;
+  if (type === 'white') {
+    btn.style.background = 'rgba(255,255,255,0.9)';
+    btn.style.color = '#1E1A14';
+    setTimeout(function() { btn.style.background = 'transparent'; btn.style.color = '#fff'; }, 600);
+  } else if (type === 'gold') {
+    btn.style.background = 'rgba(196,150,42,0.9)';
+    btn.style.color = '#fff';
+    setTimeout(function() { btn.style.background = 'transparent'; btn.style.color = '#fff'; }, 600);
+  }
+}
+
 // HERO SLIDER
 let slide = 0;
 const slides = document.querySelectorAll('.hero-slide');
